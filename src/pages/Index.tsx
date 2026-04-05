@@ -37,84 +37,104 @@ const galleryVideos: { videoId: string; caption: string }[] = [
 ];
 
 const specs = [
-  { label: "Диаметр направляющего отверстия", value: "68", unit: "мм" },
+  { label: "Диаметр направляющего отверстия", value: "68 / 72 / 82", unit: "мм" },
   { label: "Межосевое расстояние (ряд)", value: "71", unit: "мм" },
-  { label: "Количество отверстий", value: "1 / 2 / 3 / 4", unit: "шт." },
-  { label: "Толщина пластины", value: "8", unit: "мм" },
-  { label: "Материал", value: "Сталь 45 (закалённая)", unit: "HRC 42–46" },
-  { label: "Точность позиционирования", value: "±0.2", unit: "мм" },
-  { label: "Габариты (4 отв.)", value: "340 × 90 × 8", unit: "мм" },
-  { label: "Масса (4 отв.)", value: "1.95", unit: "кг" },
-  { label: "Покрытие", value: "Оксидирование", unit: "чёрное" },
-  { label: "Совместимость", value: "Алмазные коронки Ø68", unit: "SDS / SDS+" },
+  { label: "Количество отверстий", value: "1 / 2 / 3 / 4 / 5", unit: "шт." },
+  { label: "Материал", value: "Фанера берёзовая", unit: "влагостойкая" },
+  { label: "Производитель", value: "BORISOV-PRO", unit: "Россия" },
+  { label: "Точность позиционирования", value: "±0.5", unit: "мм" },
+  { label: "Совместимость", value: "Коронки Ø68 / Ø72 / Ø82", unit: "сухое сверление" },
+  { label: "Ресурс", value: "50 000+", unit: "циклов" },
+  { label: "Гарантия", value: "12", unit: "месяцев" },
+  { label: "Доставка", value: "По всей России", unit: "СДЭК / Почта" },
 ];
 
 const variants = [
   {
-    name: "ШП-1",
+    name: "БП-1",
     holes: 1,
-    price: "890",
-    size: "120 × 90 × 8 мм",
-    weight: "0.55 кг",
+    price: "293",
+    size: "Ø68 / Ø72 / Ø82 мм",
+    weight: "—",
     tag: "БАЗОВЫЙ",
-    desc: "Для точечных работ и исправлений",
+    desc: "Точечные работы, исправление смещённых отверстий",
     color: "var(--eng-cyan)",
   },
   {
-    name: "ШП-2",
+    name: "БП-2",
     holes: 2,
-    price: "1 390",
-    size: "195 × 90 × 8 мм",
-    weight: "0.95 кг",
+    price: "354",
+    size: "Ø68 / Ø72 / Ø82 мм",
+    weight: "—",
     tag: "ПОПУЛЯРНЫЙ",
-    desc: "Двойные розетки и выключатели",
+    desc: "Двойные розетки и двухклавишные выключатели",
     color: "var(--eng-orange)",
   },
   {
-    name: "ШП-3",
+    name: "БП-3",
     holes: 3,
-    price: "1 790",
-    size: "265 × 90 × 8 мм",
-    weight: "1.35 кг",
+    price: "457",
+    size: "Ø68 / Ø72 / Ø82 мм",
+    weight: "—",
     tag: "СЕРИЯ",
-    desc: "Тройные блоки в ряд",
+    desc: "Тройные блоки в одну линию",
     color: "var(--eng-cyan)",
   },
   {
-    name: "ШП-4",
+    name: "БП-4",
     holes: 4,
-    price: "2 190",
-    size: "340 × 90 × 8 мм",
-    weight: "1.95 кг",
+    price: "475",
+    size: "Ø68 / Ø72 / Ø82 мм",
+    weight: "—",
     tag: "ПРОФ.",
-    desc: "Четырёхместные блоки, ремонтные бригады",
+    desc: "Четырёхместные блоки, монтажные бригады",
     color: "var(--eng-cyan)",
+  },
+  {
+    name: "БП-5",
+    holes: 5,
+    price: "592",
+    size: "Ø68 / Ø72 / Ø82 мм",
+    weight: "—",
+    tag: "МАКС.",
+    desc: "Пятиместные блоки, серийный монтаж",
+    color: "var(--eng-cyan)",
+  },
+  {
+    name: "КОМПЛЕКТ",
+    holes: 5,
+    price: "1 500",
+    size: "5 шт. в наборе (1–5 отв.)",
+    weight: "—",
+    tag: "ВЫГОДНО",
+    desc: "Полный набор БП-1…БП-5 — всё под рукой на объекте",
+    color: "var(--eng-orange)",
   },
 ];
 
 const advantages = [
-  { icon: "Target", title: "Точность", value: "±0.2 мм", desc: "Лазерная разметка центров, закалённая сталь не деформируется при ударных нагрузках" },
-  { icon: "Zap", title: "Скорость", value: "в 3× быстрее", desc: "Разметка и сверление без рулетки — просто приложил, зафиксировал, сверлишь" },
-  { icon: "Shield", title: "Ресурс", value: "50 000+ циклов", desc: "HRC 42–46, оксидирование от коррозии. Прослужит всю карьеру" },
-  { icon: "Layers", title: "Совместимость", value: "Любая коронка Ø68", desc: "SDS, SDS+, биметалл — подходит ко всем стандартным коронкам для подрозетников" },
+  { icon: "Target", title: "Точность", value: "±0.5 мм", desc: "Все отверстия строго по осям — межцентровое расстояние 71 мм выдержано без рулетки" },
+  { icon: "Zap", title: "Скорость", value: "в 3× быстрее", desc: "Приложил — зафиксировал — сверлишь. Никакой разметки, никакого уровня" },
+  { icon: "Shield", title: "Ресурс", value: "50 000+ циклов", desc: "Берёзовая влагостойкая фанера выдерживает тысячи проходов алмазной коронкой" },
+  { icon: "Layers", title: "Три диаметра", value: "Ø68 / Ø72 / Ø82", desc: "Подходит к любым стандартным коронкам для сухого сверления подрозетников" },
 ];
 
 const useCases = [
-  { title: "Бетон и кирпич", desc: "В паре с алмазной коронкой даёт идеальный вход без скола краёв", icon: "Hammer" },
-  { title: "Гипсокартон и пеноблок", desc: "Шаблон удерживает коронку от смещения на мягком материале", icon: "Square" },
+  { title: "Бетон и кирпич", desc: "В паре с алмазной коронкой для сухого сверления — чистый вход без скола краёв", icon: "Hammer" },
+  { title: "Гипсокартон и пеноблок", desc: "Шаблон удерживает коронку от смещения на мягких материалах", icon: "Square" },
   { title: "Серийный монтаж", desc: "Бригады экономят до 40% времени на объектах со 100+ розетками", icon: "TrendingUp" },
-  { title: "Точные исправления", desc: "Рассверловка смещённых отверстий без повреждения соседних зон", icon: "Crosshair" },
+  { title: "Точные исправления", desc: "Рассверловка смещённых отверстий без повреждения соседней зоны", icon: "Crosshair" },
 ];
 
 const howItWorks = [
-  { num: "01", title: "Приложите шаблон", desc: "Совместите центр с разметкой на стене, плотно прижмите" },
-  { num: "02", title: "Зафиксируйте", desc: "Два магнитных фиксатора или струбцина удерживают без рук" },
-  { num: "03", title: "Сверлите", desc: "Вставьте коронку Ø68 в направляющее кольцо, начинайте сверление" },
-  { num: "04", title: "Готово", desc: "Идеально позиционированное отверстие с первого прохода" },
+  { num: "01", title: "Приложите шаблон", desc: "Совместите нужное отверстие с точкой разметки на стене, плотно прижмите" },
+  { num: "02", title: "Зафиксируйте", desc: "Прижмите к стене рукой или зафиксируйте струбциной — шаблон лёгкий и не смещается" },
+  { num: "03", title: "Сверлите", desc: "Вставьте алмазную коронку Ø68/72/82 мм и начинайте сухое сверление" },
+  { num: "04", title: "Готово", desc: "Идеально расположенное отверстие с первого прохода — без разметки и уровня" },
 ];
 
 export default function Index() {
-  const [form, setForm] = useState({ name: "", phone: "", variant: "ШП-2", qty: "1", comment: "" });
+  const [form, setForm] = useState({ name: "", phone: "", variant: "БП-2", qty: "1", comment: "" });
   const [sent, setSent] = useState(false);
   const [activeTab, setActiveTab] = useState<"product" | "blueprint">("product");
   const [galleryTab, setGalleryTab] = useState<"photo" | "video">("photo");
@@ -140,7 +160,7 @@ export default function Index() {
             <span>ОПЛАТА ПРИ ПОЛУЧЕНИИ</span>
           </div>
           <div className="font-mono text-xs" style={{ color: '#fff' }}>
-            +7 (800) 000-00-00
+            +7 (965) 007-30-30
           </div>
         </div>
       </div>
@@ -170,7 +190,7 @@ export default function Index() {
             </div>
             <div className="eng-panel relative overflow-hidden" style={{ minHeight: 400 }}>
               <div className="absolute top-3 right-3 font-mono text-xs z-10" style={{ color: 'var(--eng-cyan)' }}>
-                {activeTab === "product" ? "ИЗДЕЛИЕ ШП / СЕРИЯ 2026" : "ЧЕР. №ШП-002 / М 1:1"}
+                {activeTab === "product" ? "BORISOV-PRO / ШАБЛОН БП" : "СХЕМА / МЕЖЦЕНТРОВОЕ 71 ММ"}
               </div>
               <img
                 src={activeTab === "product" ? IMG_PRODUCT : IMG_BLUEPRINT}
@@ -180,7 +200,7 @@ export default function Index() {
               />
               <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-[var(--eng-panel)] to-transparent" />
               <div className="absolute bottom-3 left-14 font-mono text-xs text-[var(--eng-text-dim)]">
-                Ø68мм × ряд 71мм × толщина 8мм
+                Ø68 / Ø72 / Ø82 мм · шаг 71 мм · фанера берёзовая
               </div>
             </div>
           </div>
@@ -188,7 +208,7 @@ export default function Index() {
           {/* Right — info */}
           <div className="animate-fade-in-up-delay-1">
             <div className="flex items-center gap-3 mb-5">
-              <span className="tech-badge">СЕРИЯ ШП</span>
+              <span className="tech-badge">BORISOV-PRO</span>
               <span className="tech-badge" style={{ borderColor: 'var(--eng-orange)', color: 'var(--eng-orange)' }}>В НАЛИЧИИ</span>
             </div>
             <h1 className="font-display text-5xl font-bold leading-tight tracking-tight mb-2" style={{ color: '#fff' }}>
@@ -196,15 +216,15 @@ export default function Index() {
               <span style={{ color: 'var(--eng-cyan)' }}>ПОДРОЗЕТНИКОВ</span>
             </h1>
             <p className="font-mono text-sm text-[var(--eng-text-dim)] uppercase tracking-wider mb-8">
-              Точное сверление Ø68 мм с первого прохода
+              Точное сверление Ø68 / Ø72 / Ø82 мм · от 293 ₽
             </p>
 
             {/* Quick stats */}
             <div className="grid grid-cols-3 gap-3 mb-8">
               {[
-                { val: "±0.2 мм", label: "точность" },
+                { val: "от 293 ₽", label: "цена" },
                 { val: "×3", label: "быстрее" },
-                { val: "10 000+", label: "циклов" },
+                { val: "50 000+", label: "циклов" },
               ].map((s) => (
                 <div key={s.label} className="eng-panel p-3 text-center">
                   <div className="font-display text-xl font-bold" style={{ color: 'var(--eng-cyan)' }}>{s.val}</div>
@@ -216,7 +236,7 @@ export default function Index() {
             {/* Variant selector */}
             <div className="mb-6">
               <div className="font-mono text-xs text-[var(--eng-text-dim)] uppercase mb-3">ВЫБЕРИТЕ ИСПОЛНЕНИЕ</div>
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-3 gap-2">
                 {variants.map((v) => (
                   <button
                     key={v.name}
@@ -563,7 +583,7 @@ export default function Index() {
                     { icon: "CreditCard", label: "Оплата", val: "При получении или онлайн" },
                     { icon: "Clock", label: "Отправка", val: "1–2 рабочих дня после заказа" },
                     { icon: "RotateCcw", label: "Возврат", val: "14 дней по закону о защите прав потребителей" },
-                    { icon: "Phone", label: "Телефон", val: "+7 (800) 000-00-00" },
+                    { icon: "Phone", label: "Телефон", val: "+7 (965) 007-30-30" },
                   ].map((c, i) => (
                     <div key={i} className="flex items-start gap-3">
                       <div className="w-6 h-6 flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -587,7 +607,7 @@ export default function Index() {
                   <div className="font-display text-2xl font-bold" style={{ color: '#fff' }}>12 месяцев</div>
                 </div>
                 <div className="font-mono text-xs text-[var(--eng-text-dim)] leading-relaxed">
-                  На все изделия серии ШП. При производственном дефекте — замена за наш счёт.
+                  На все шаблоны BORISOV-PRO. При производственном дефекте — замена за наш счёт.
                 </div>
               </div>
             </div>
@@ -708,10 +728,12 @@ export default function Index() {
       <footer className="border-t border-[var(--eng-border)] bg-[var(--eng-panel)] py-5">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-3">
           <div className="font-mono text-xs text-[var(--eng-text-dim)]">
-            © 2026 СЕРИЯ ШП — Шаблоны для подрозетников
+            © 2026 BORISOV-PRO — Шаблоны для сверления подрозетников
           </div>
           <div className="flex items-center gap-4 font-mono text-xs text-[var(--eng-text-dim)]">
-            <span>Все цены указаны с НДС</span>
+            <span>+7 (965) 007-30-30</span>
+            <span className="text-[var(--eng-border)]">|</span>
+            <span>borisov-pro.ru</span>
             <span className="text-[var(--eng-border)]">|</span>
             <span style={{ color: 'var(--eng-cyan)' }}>Гарантия 12 месяцев</span>
           </div>
