@@ -4,6 +4,38 @@ import Icon from "@/components/ui/icon";
 const IMG_PRODUCT = "https://cdn.poehali.dev/projects/efcc44e0-22a7-45c5-8572-1efd74d55a92/files/edfe8efc-fa36-48bd-8e5b-58ee9b2e7dae.jpg";
 const IMG_BLUEPRINT = "https://cdn.poehali.dev/projects/efcc44e0-22a7-45c5-8572-1efd74d55a92/files/e8f9b71e-9b55-47e4-bd3f-3da8c3011a72.jpg";
 
+const IMG1 = "https://cdn.poehali.dev/projects/efcc44e0-22a7-45c5-8572-1efd74d55a92/files/edfe8efc-fa36-48bd-8e5b-58ee9b2e7dae.jpg";
+const IMG2 = "https://cdn.poehali.dev/projects/efcc44e0-22a7-45c5-8572-1efd74d55a92/files/7a241473-85d8-4298-b17c-bf9cc00dc85d.jpg";
+const IMG3 = "https://cdn.poehali.dev/projects/efcc44e0-22a7-45c5-8572-1efd74d55a92/files/cf5c7b60-ece1-44d5-b68f-ede3da59dee5.jpg";
+const IMG4 = "https://cdn.poehali.dev/projects/efcc44e0-22a7-45c5-8572-1efd74d55a92/files/f5d8a208-f07e-4809-8a8e-91113425a100.jpg";
+const IMG5 = "https://cdn.poehali.dev/projects/efcc44e0-22a7-45c5-8572-1efd74d55a92/files/e8f9b71e-9b55-47e4-bd3f-3da8c3011a72.jpg";
+
+const galleryPhotos: { src: string; caption: string }[] = [
+  { src: IMG1, caption: "Изделие ШП-4 / общий вид" },
+  { src: IMG2, caption: "Работа с шаблоном на объекте" },
+  { src: IMG3, caption: "Точное позиционирование на кирпиче" },
+  { src: IMG4, caption: "Крупный план направляющих отверстий" },
+  { src: IMG5, caption: "Технический чертёж ШП / серия 2026" },
+  { src: IMG1, caption: "Комплект: ШП-1, ШП-2, ШП-3, ШП-4" },
+  { src: IMG2, caption: "Сверление в бетонной стене" },
+  { src: IMG3, caption: "Монтаж двойного блока розеток" },
+  { src: IMG4, caption: "Поверхность после оксидирования" },
+  { src: IMG5, caption: "Габаритный чертёж — вид сверху" },
+  { src: IMG2, caption: "Результат: четыре отверстия в ряд" },
+  { src: IMG3, caption: "Использование на гипсокартоне" },
+];
+
+const galleryVideos: { videoId: string; caption: string }[] = [
+  { videoId: "dQw4w9WgXcQ", caption: "Обзор шаблона ШП-4" },
+  { videoId: "dQw4w9WgXcQ", caption: "Сверление бетона — реальный тест" },
+  { videoId: "dQw4w9WgXcQ", caption: "Сравнение: с шаблоном и без" },
+  { videoId: "dQw4w9WgXcQ", caption: "Монтаж четырёхместного блока" },
+  { videoId: "dQw4w9WgXcQ", caption: "Обзор материала и покрытия" },
+  { videoId: "dQw4w9WgXcQ", caption: "Работа на кирпиче и пеноблоке" },
+  { videoId: "dQw4w9WgXcQ", caption: "Упаковка и комплектация" },
+  { videoId: "dQw4w9WgXcQ", caption: "Отзыв бригадира — 300+ объектов" },
+];
+
 const specs = [
   { label: "Диаметр направляющего отверстия", value: "68", unit: "мм" },
   { label: "Межосевое расстояние (ряд)", value: "71", unit: "мм" },
@@ -85,6 +117,9 @@ export default function Index() {
   const [form, setForm] = useState({ name: "", phone: "", variant: "ШП-2", qty: "1", comment: "" });
   const [sent, setSent] = useState(false);
   const [activeTab, setActiveTab] = useState<"product" | "blueprint">("product");
+  const [galleryTab, setGalleryTab] = useState<"photo" | "video">("photo");
+  const [lightbox, setLightbox] = useState<number | null>(null);
+  const [activeVideo, setActiveVideo] = useState<number | null>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -248,6 +283,148 @@ export default function Index() {
           </div>
         </div>
       </section>
+
+      {/* GALLERY */}
+      <section className="border-t border-[var(--eng-border)] py-14">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex items-center gap-4 mb-8">
+            <div className="h-px flex-1 bg-[var(--eng-border)]" />
+            <span className="font-mono text-xs text-[var(--eng-text-dim)] uppercase tracking-widest">// ФОТО И ВИДЕО</span>
+            <div className="h-px flex-1 bg-[var(--eng-border)]" />
+          </div>
+
+          {/* Tab switcher */}
+          <div className="flex gap-0 mb-6">
+            {(["photo", "video"] as const).map((t) => (
+              <button
+                key={t}
+                onClick={() => { setGalleryTab(t); setActiveVideo(null); }}
+                className="flex items-center gap-2 font-mono text-xs uppercase px-5 py-2.5 border border-[var(--eng-border)] transition-colors"
+                style={{
+                  background: galleryTab === t ? 'rgba(0,229,255,0.1)' : 'transparent',
+                  color: galleryTab === t ? 'var(--eng-cyan)' : 'var(--eng-text-dim)',
+                  borderColor: galleryTab === t ? 'var(--eng-cyan)' : 'var(--eng-border)',
+                }}
+              >
+                <Icon name={t === "photo" ? "Image" : "Play"} size={13} />
+                {t === "photo" ? `Фото (${galleryPhotos.length})` : `Видео (${galleryVideos.length})`}
+              </button>
+            ))}
+          </div>
+
+          {/* Photos grid */}
+          {galleryTab === "photo" && (
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+              {galleryPhotos.map((photo, i) => (
+                <div
+                  key={i}
+                  className="eng-panel overflow-hidden cursor-pointer group relative"
+                  style={{ aspectRatio: "4/3" }}
+                  onClick={() => setLightbox(i)}
+                >
+                  <img
+                    src={photo.src}
+                    alt={photo.caption}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-[var(--eng-dark)] opacity-0 group-hover:opacity-50 transition-opacity duration-300" />
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <Icon name="ZoomIn" size={28} style={{ color: 'var(--eng-cyan)' }} />
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 px-3 py-2 bg-gradient-to-t from-[var(--eng-dark)] to-transparent">
+                    <span className="font-mono text-xs text-[var(--eng-text-dim)]">{String(i + 1).padStart(2, "0")} / {photo.caption}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Videos grid */}
+          {galleryTab === "video" && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {galleryVideos.map((video, i) => (
+                <div key={i} className="eng-panel overflow-hidden" style={{ aspectRatio: "16/9" }}>
+                  {activeVideo === i ? (
+                    <iframe
+                      src={`https://rutube.ru/play/embed/${video.videoId}`}
+                      className="w-full h-full"
+                      allowFullScreen
+                      allow="clipboard-write; autoplay"
+                      title={video.caption}
+                    />
+                  ) : (
+                    <div
+                      className="w-full h-full relative cursor-pointer group bg-[var(--eng-dark)] flex items-center justify-center"
+                      onClick={() => setActiveVideo(i)}
+                    >
+                      <div
+                        className="w-12 h-12 flex items-center justify-center border-2 transition-all duration-200 group-hover:scale-110"
+                        style={{ borderColor: 'var(--eng-cyan)', background: 'rgba(0,229,255,0.1)' }}
+                      >
+                        <Icon name="Play" size={20} style={{ color: 'var(--eng-cyan)' }} />
+                      </div>
+                      <div className="absolute bottom-0 left-0 right-0 px-3 py-2 bg-gradient-to-t from-[var(--eng-dark)] to-transparent">
+                        <div className="font-mono text-xs text-[var(--eng-text-dim)]">
+                          <span style={{ color: 'var(--eng-cyan)' }}>{String(i + 1).padStart(2, "0")}</span> / {video.caption}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* LIGHTBOX */}
+      {lightbox !== null && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center"
+          style={{ background: 'rgba(8,14,20,0.95)' }}
+          onClick={() => setLightbox(null)}
+        >
+          <div className="relative max-w-4xl w-full mx-4" onClick={e => e.stopPropagation()}>
+            {/* Close */}
+            <button
+              className="absolute -top-10 right-0 font-mono text-xs text-[var(--eng-text-dim)] hover:text-white flex items-center gap-1 transition-colors"
+              onClick={() => setLightbox(null)}
+            >
+              <Icon name="X" size={14} /> ЗАКРЫТЬ
+            </button>
+            {/* Image */}
+            <div className="eng-panel overflow-hidden">
+              <img
+                src={galleryPhotos[lightbox].src}
+                alt={galleryPhotos[lightbox].caption}
+                className="w-full object-contain"
+                style={{ maxHeight: "75vh" }}
+              />
+              <div className="px-5 py-3 border-t border-[var(--eng-border)] flex items-center justify-between">
+                <span className="font-mono text-xs text-[var(--eng-text-dim)]">
+                  <span style={{ color: 'var(--eng-cyan)' }}>{String(lightbox + 1).padStart(2, "0")}</span> / {galleryPhotos[lightbox].caption}
+                </span>
+                <span className="font-mono text-xs text-[var(--eng-text-dim)]">{lightbox + 1} из {galleryPhotos.length}</span>
+              </div>
+            </div>
+            {/* Prev / Next */}
+            <div className="flex justify-between mt-3">
+              <button
+                className="eng-panel px-4 py-2 font-mono text-xs text-[var(--eng-text-dim)] hover:border-[var(--eng-cyan)] hover:text-white transition-colors flex items-center gap-2"
+                onClick={() => setLightbox((lightbox - 1 + galleryPhotos.length) % galleryPhotos.length)}
+              >
+                <Icon name="ChevronLeft" size={14} /> ПРЕДЫДУЩЕЕ
+              </button>
+              <button
+                className="eng-panel px-4 py-2 font-mono text-xs text-[var(--eng-text-dim)] hover:border-[var(--eng-cyan)] hover:text-white transition-colors flex items-center gap-2"
+                onClick={() => setLightbox((lightbox + 1) % galleryPhotos.length)}
+              >
+                СЛЕДУЮЩЕЕ <Icon name="ChevronRight" size={14} />
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* HOW IT WORKS */}
       <section className="border-t border-[var(--eng-border)] py-14">
